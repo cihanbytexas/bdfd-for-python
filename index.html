@@ -1,74 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BDFD FOR Python</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(120deg, #0f172a, #1e293b);
-      color: #e2e8f0;
-      text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      animation: fadeInDown 1s ease;
-    }
-    p {
-      margin: 0.3rem 0;
-      color: #94a3b8;
-      animation: fadeInUp 1.2s ease;
-    }
-    .code-box {
-      margin-top: 20px;
-      background: #0f172a;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #334155;
-      text-align: left;
-      width: 90%;
-      max-width: 600px;
-      font-family: monospace;
-      font-size: 14px;
-      overflow-x: auto;
-      animation: fadeIn 1.5s ease;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BDFD FOR Python</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+  text-align: center;
+}
+h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+p { color: #94a3b8; margin: 0.2rem 0; }
+.code-box {
+  margin-top: 20px;
+  background: #0f172a;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  font-family: monospace;
+  text-align: left;
+}
+</style>
 </head>
 <body>
-  <h1>BDFD FOR Python</h1>
-  <p>geliştirici: texas</p>
-  <p>developer: texas</p>
-
-  <div class="code-box">
-<pre><code># Örnek kullanım:
-# API çağrısı yaparak Python kodu çalıştır
-
-GET /api/python?code=print("Hello from Python")
-
-# Beklenen çıktı:
-Hello from Python
+  <div>
+    <h1>BDFD FOR Python</h1>
+    <p>geliştirici: texas</p>
+    <p>developer: texas</p>
+    <div class="code-box">
+<pre><code># API kullanımı örnek:
+# https://your-domain.vercel.app/api/python?code=print("Hello")
 </code></pre>
+    </div>
   </div>
 </body>
 </html>
