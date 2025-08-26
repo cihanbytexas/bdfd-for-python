@@ -5,259 +5,70 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BDFD FOR Python</title>
   <style>
-    :root{
-      --bg1:#0f172a;
-      --bg2:#071033;
-      --card:#0b1220;
-      --accent1:#7dd3fc;
-      --accent2:#60a5fa;
-      --muted:#98a0b3;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #0f172a, #1e293b);
+      color: #e2e8f0;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-
-    html,body{
-      height:100%;
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.08), transparent),
-                  linear-gradient(120deg,var(--bg1), var(--bg2));
-      color:#e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 1s ease;
     }
-
-    .wrap{
-      min-height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:48px 20px;
-      box-sizing:border-box;
+    p {
+      margin: 0.3rem 0;
+      color: #94a3b8;
+      animation: fadeInUp 1.2s ease;
     }
-
-    .card{
-      width:900px;
-      max-width:100%;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
-      border-radius:14px;
-      padding:30px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.03);
-      transform: translateY(0);
-      transition: transform 350ms cubic-bezier(.2,.9,.3,1);
+    .code-box {
+      margin-top: 20px;
+      background: #0f172a;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      text-align: left;
+      width: 90%;
+      max-width: 600px;
+      font-family: monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      animation: fadeIn 1.5s ease;
     }
-    .card:hover{ transform: translateY(-6px); }
-
-    .header{
-      display:flex;
-      align-items:center;
-      gap:16px;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .logo{
-      width:68px;
-      height:68px;
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,var(--accent1),var(--accent2));
-      color:#04203a;
-      font-weight:800;
-      font-size:18px;
-      box-shadow: 0 6px 18px rgba(96,165,250,0.12);
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .title{
-      font-size:26px;
-      margin:0;
-      letter-spacing:0.2px;
-    }
-    .subtitle{
-      margin:4px 0 0 0;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .meta{
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .meta .dev{
-      padding:8px 12px;
-      background:rgba(255,255,255,0.02);
-      border-radius:10px;
-      font-size:13px;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.01);
-    }
-
-    .example{
-      margin-top:22px;
-      display:flex;
-      gap:18px;
-      align-items:flex-start;
-      flex-wrap:wrap;
-    }
-
-    .code-wrap{
-      flex:1 1 420px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
-      border-radius:10px;
-      padding:16px;
-      border:1px solid rgba(255,255,255,0.03);
-      position:relative;
-      box-shadow: 0 8px 24px rgba(2,6,23,0.45);
-    }
-
-    pre{
-      margin:0;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-      font-size:13px;
-      line-height:1.5;
-      color:#dff6ff;
-      max-height:260px;
-      overflow:auto;
-      white-space:pre;
-    }
-
-    .copy-btn{
-      position:absolute;
-      right:12px;
-      top:12px;
-      background:transparent;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.03);
-      padding:6px 8px;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:13px;
-      transition:all 160ms ease;
-      backdrop-filter: blur(4px);
-    }
-    .copy-btn:hover{ transform:translateY(-2px); color: #fff; border-color: rgba(125,211,252,0.14); }
-
-    .info{
-      width:220px;
-      min-width:200px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      align-items:flex-start;
-    }
-    .chip{
-      background:rgba(255,255,255,0.02);
-      border-radius:10px;
-      padding:10px 12px;
-      font-size:13px;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.01);
-    }
-
-    .footer{
-      margin-top:18px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    /* subtle animated gradient line under title */
-    .accent-line{
-      height:6px;
-      border-radius:6px;
-      margin-top:12px;
-      background:linear-gradient(90deg, rgba(125,211,252,0.12), rgba(96,165,250,0.12));
-      position:relative;
-      overflow:hidden;
-    }
-    .accent-line::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      width:40%;
-      transform:translateX(-100%);
-      animation:slide 4s linear infinite;
-      opacity:0.9;
-      filter:blur(12px);
-    }
-    @keyframes slide{
-      0%{ transform:translateX(-100%); }
-      50%{ transform:translateX(120%); }
-      100%{ transform:translateX(-100%); }
-    }
-
-    /* responsive */
-    @media (max-width:640px){
-      .header{ gap:12px; }
-      .logo{ width:54px; height:54px; font-size:16px; }
-      .title{ font-size:20px; }
-      .info{ width:100%; order:3; }
-      .example{ flex-direction:column; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card" role="main" aria-labelledby="main-title">
-      <div class="header">
-        <div class="logo">BFD</div>
-        <div>
-          <h1 id="main-title" class="title">BDFD FOR Python</h1>
-          <div class="subtitle">Basit köprü API ile Python kodu çalıştırma için örnek arayüz</div>
-          <div class="accent-line" aria-hidden="true"></div>
-        </div>
-      </div>
+  <h1>BDFD FOR Python</h1>
+  <p>geliştirici: texas</p>
+  <p>developer: texas</p>
 
-      <div class="meta">
-        <div class="dev">geliştirici: texas</div>
-        <div class="dev">developer: texas</div>
-      </div>
+  <div class="code-box">
+<pre><code># Örnek kullanım:
+# API çağrısı yaparak Python kodu çalıştır
 
-      <div class="example">
-        <div class="code-wrap" aria-label="Örnek kod">
-          <button class="copy-btn" id="copyBtn" title="Kodu kopyala">Kopyala</button>
+GET /api/python?code=print("Hello from Python")
 
-          <pre id="codeBlock"><code># Örnek: api/python endpoint'ine kod gönderimi (curl)
-# Bu istek, API'ye "print('Hello from Python')" kodunu çalıştırmasını söyler.
-# Deploy ettiğinizde: https://senin-domain.vercel.app/api/python?code=print("Hello from Python")
-
-curl -G --data-urlencode "code=print('Hello from Python')" \
-  "https://senin-domain.vercel.app/api/python"
+# Beklenen çıktı:
+Hello from Python
 </code></pre>
-        </div>
-
-        <div class="info" aria-hidden="false">
-          <div class="chip"><strong>Kullanım:</strong><br>Kod parametresini URL içine gönder.</div>
-          <div class="chip"><strong>Güvenlik:</strong><br>Bu demo açık API için tehlikeli olabilir. Prod ortamda doğrulama ekle.</div>
-          <div class="chip"><strong>Not:</strong><br>Vercel ile python runtime kullanılmalıdır (vercel.json ayarı).</div>
-        </div>
-      </div>
-
-      <div class="footer">İyi çalışmalar — <span style="color:var(--accent1)">texas</span></div>
-    </div>
   </div>
-
-  <script>
-    const copyBtn = document.getElementById('copyBtn');
-    const codeBlock = document.getElementById('codeBlock').innerText;
-
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(codeBlock);
-        copyBtn.textContent = 'Kopyalandı ✓';
-        setTimeout(()=> copyBtn.textContent = 'Kopyala', 1500);
-      } catch (e) {
-        copyBtn.textContent = 'Hata';
-        setTimeout(()=> copyBtn.textContent = 'Kopyala', 1500);
-      }
-    });
-
-    // küçük görsel dokunuş: yüklenince hafif fade-in
-    document.body.style.opacity = 0;
-    document.body.style.transition = 'opacity 450ms ease';
-    window.addEventListener('load', ()=> document.body.style.opacity = 1);
-  </script>
 </body>
 </html>
