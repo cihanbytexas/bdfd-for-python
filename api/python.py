@@ -1,7 +1,6 @@
 def handler(request):
     import sys, io, traceback
 
-    # Parametre al
     code = request.args.get("code") if request.args else None
 
     if not code:
